@@ -1,0 +1,36 @@
+{
+  "name": "Codespaces Environment",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {},
+  "containerEnv": {
+    "RCLONE_CONF": "${localEnv:RCLONE_CONF}",
+    "MOUNT_SOURCE": "${localEnv:MOUNT_SOURCE}",
+    "MOUNT_TARGET": "${localEnv:MOUNT_TARGET}"
+  },
+  "initializeCommand": {},
+  "updateContentCommand": {},
+  "postCreateCommand": {
+    "install-rclone": "curl https://rclone.org/install.sh | sudo bash",
+    "configure-rclone": "mkdir -p ~/.config/rclone && if [ ! -z \"$RCLONE_CONF\" ]; then echo \"$RCLONE_CONF\" > ~/.config/rclone/rclone.conf && chmod 600 ~/.config/rclone/rclone.conf; fi",
+    "install-fuse": "sudo apt-get update && sudo apt-get install -y fuse3",
+    "create-mount-dir": "mkdir -p ${MOUNT_TARGET:-~/codespaces}"
+  },
+  "postStartCommand": "rclone mount ${MOUNT_SOURCE} ${MOUNT_TARGET:-~/codespaces} --daemon --allow-non-empty --vfs-cache-mode writes --vfs-cache-max-size 4G --transfers 8 --buffer-size 128M",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "augment.vscode-augment",
+        "ms-azuretools.vscode-docker",
+        "cweijan.vscode-database-client2",
+        "GitHub.vscode-github-actions",
+        "GitHub.copilot",
+        "eamodio.gitlens",
+        "ms-python.python",
+        "yzhang.markdown-all-in-one",
+        "redhat.vscode-xml",
+        "redhat.vscode-yaml"
+      ],
+      "settings": {}
+    }
+  }
+}
