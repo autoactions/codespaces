@@ -21,6 +21,7 @@
       "extensions": [
         "augment.vscode-augment",
         "ms-azuretools.vscode-docker",
+        "ms-vscode-remote.remote-containers",
         "cweijan.vscode-database-client2",
         "GitHub.vscode-github-actions",
         "GitHub.copilot",
