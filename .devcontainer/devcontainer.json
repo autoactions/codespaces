@@ -1,6 +1,6 @@
 {
   "name": "Codespaces Environment",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "image": "mcr.microsoft.com/devcontainers/universal",
   "features": {},
   "containerEnv": {
     "RCLONE_CONF": "${localEnv:RCLONE_CONF}",
